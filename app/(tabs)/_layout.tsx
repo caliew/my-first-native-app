@@ -1,37 +1,33 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { View, Text, Button } from 'react-native'
+import React from 'react'
+import { Tabs, router } from 'expo-router'
+import { Feather } from '@expo/vector-icons';
+import { DrawerToggleButton } from '@react-navigation/drawer';
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function _layout() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
-        }}
-      />
-    </Tabs>
-  );
+   <Tabs screenOptions={{headerLeft: () => <DrawerToggleButton tintColor='#000' />}}>
+    <Tabs.Screen name='ProjectHome' options={{
+      tabBarIcon: ({color}) => (
+        <Feather name="list" size={24} color={color} />
+      ),
+      tabBarLabel: 'ProjectHome',
+      headerTitle: 'ProjectHome'
+    }} />
+    <Tabs.Screen name='MapScreen' options={{
+      tabBarIcon: ({color}) => (
+        <Feather name="list" size={24} color={color} />
+      ),
+      tabBarLabel: 'MapScreen',
+      headerTitle: 'MapScreen'
+    }} />
+    <Tabs.Screen name='QRCodeScannerScreen' options={{
+      tabBarIcon: ({color}) => (
+        <Feather name="list" size={24} color={color} />
+      ),
+      tabBarLabel: 'QRCodeScannerScreen',
+      headerTitle: 'QRCodeScannerScreen'
+    }} />
+   </Tabs>
+  )
 }
